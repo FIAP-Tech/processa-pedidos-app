@@ -22,7 +22,7 @@ def lambda_handler(event, context):
     if forma_pagamento == 'BOLETO':
         envia_para_fila_processa_pedidos = True
 
-    elif forma_pagamento == 'CARTAO_CREDITO':
+    elif forma_pagamento in ['CARTAO_CREDITO', 'CARTAO_DEBITO']:
         validade = sqs_message.get('validadeFormaPagamentoCartao')
         if validade:
             mes_validade, ano_validade = map(int, validade.split('/'))
